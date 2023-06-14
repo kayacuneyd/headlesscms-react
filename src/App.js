@@ -10,7 +10,7 @@ const App = () => {
       <Routes>
         <Route exact path="/" component={BlogList} element={<BlogList />} />
         <Route
-          path="/post/:postId"
+          path="/makaleler/:postId"
           component={BlogPost}
           element={<BlogPost />}
         />
