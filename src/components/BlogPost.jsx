@@ -21,8 +21,7 @@ const BlogPost = () => {
     <div className="App">
       <div className="App-header">
         <h1>{post.title.rendered}</h1>
-
-        <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}></p>
+        <div dangerouslySetInnerHTML={{ __html: post.content.rendered }}></div>
       </div>
     </div>
   );
