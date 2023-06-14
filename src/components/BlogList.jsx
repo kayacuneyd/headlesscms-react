@@ -32,7 +32,7 @@ const App = () => {
           <Link className="App-link" to={`/post/${post.id}`}>
             <h2>{post.title.rendered}</h2>
           </Link>
-          <p dangerouslySetInnerHTML={{ __html: post.content.rendered }}></p>
+          <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}></p>
         </div>
       ))}
     </div>
