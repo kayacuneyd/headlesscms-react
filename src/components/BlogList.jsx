@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 //import { Route, BrowserRouter as Router } from "react-router-dom";
 
-const App = () => {
+const BlogList = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -39,4 +39,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default BlogList;
