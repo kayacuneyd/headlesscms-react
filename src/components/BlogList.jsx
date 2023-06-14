@@ -29,7 +29,7 @@ const App = () => {
 
       {posts.map((post) => (
         <div className="App-header" key={post.id}>
-          <Link className="App-link" to={`/post/${post.id}`}>
+          <Link className="App-link" to={`/makaleler/${post.id}`}>
             <h2>{post.title.rendered}</h2>
           </Link>
           <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}></p>
