@@ -1,27 +1,34 @@
-import "../App.css";
-
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-//import { Route, BrowserRouter as Router } from "react-router-dom";
 
 const BlogList = () => {
   const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const postsPerPage = 10; // Define the desired number of posts per page
+
+  // Fetch posts based on the current page
+  const fetchPosts = useCallback(async () => {
+    try {
+      const response = await axios.get(
+        `https://buyutechaber.com/wp-json/wp/v2/posts?page=${currentPage}&per_page=${postsPerPage}`
+      );
+      setPosts(response.data);
+      setTotalPages(response.headers["x-wp-totalpages"]);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [currentPage]);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await axios.get(
-          `https://buyutechaber.com/wp-json/wp/v2/posts`
-        );
-        setPosts(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     fetchPosts();
-  }, []);
+  }, [fetchPosts]); // Trigger fetchPosts whenever currentPage changes
+
+  // Handle page change
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className="App">
@@ -35,6 +42,20 @@ const BlogList = () => {
           <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}></p>
         </div>
       ))}
+
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+          (page) => (
+            <button
+              key={page}
+              onClick={() => handlePageChange(page)}
+              disabled={page === currentPage}
+            >
+              {page}
+            </button>
+          )
+        )}
+      </div>
     </div>
   );
 };
