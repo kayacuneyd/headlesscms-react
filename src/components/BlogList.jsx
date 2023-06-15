@@ -7,6 +7,8 @@ const BlogList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const postsPerPage = 10; // Define the desired number of posts per page
+  const visiblePageRange = 5; // Define the desired number of visible pagination buttons
+  const halfRange = Math.floor(visiblePageRange / 2);
 
   // Fetch posts based on the current page
   const fetchPosts = useCallback(async () => {
@@ -30,6 +32,29 @@ const BlogList = () => {
     setCurrentPage(page);
   };
 
+  // Get the range of visible pagination buttons
+  const getPaginationRange = () => {
+    let startPage = currentPage - halfRange;
+    let endPage = currentPage + halfRange;
+
+    if (startPage < 1) {
+      startPage = 1;
+      endPage = visiblePageRange;
+    }
+
+    if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = totalPages - visiblePageRange + 1;
+      if (startPage < 1) {
+        startPage = 1;
+      }
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+  };
+
+  const paginationRange = getPaginationRange();
+
   return (
     <div className="App">
       <h1>Headless Blog</h1>
@@ -44,17 +69,15 @@ const BlogList = () => {
       ))}
 
       <div className="pagination">
-        {Array.from({ length: totalPages }, (_, index) => index + 1).map(
-          (page) => (
-            <button
-              key={page}
-              onClick={() => handlePageChange(page)}
-              disabled={page === currentPage}
-            >
-              {page}
-            </button>
-          )
-        )}
+        {paginationRange.map((page) => (
+          <button
+            key={page}
+            onClick={() => handlePageChange(page)}
+            disabled={page === currentPage}
+          >
+            {page}
+          </button>
+        ))}
       </div>
     </div>
   );
