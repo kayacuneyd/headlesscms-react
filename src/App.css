@@ -19,7 +19,7 @@
   }
 }
 
-.appTitleBlog{
+.app-title-blog{
   color: #61dafb;
 }
 
@@ -48,14 +48,14 @@
   color: #61dafb;
 }
 
-.paginationButton{
+.pagination-button{
   padding: 10px 14px;
   background-color: #282c34;
   color: #fff;
 
 }
 
-.paginationButton:hover{
+.pagination-button:hover{
   background-color: #61dafb;
   color: #282c34;
 }

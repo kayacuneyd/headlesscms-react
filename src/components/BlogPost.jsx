@@ -24,7 +24,7 @@ const BlogPost = () => {
           Previous Page
         </Link>
         <h1
-          className="appTitleBlog"
+          className="app-title-blog"
           dangerouslySetInnerHTML={{ __html: post.title.rendered }}
         ></h1>
       </div>

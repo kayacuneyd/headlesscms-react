@@ -32,32 +32,6 @@ const BlogList = () => {
     setCurrentPage(page);
   };
 
-  // Get the range of visible pagination buttons
-  const getPaginationRange = () => {
-    let startPage = currentPage - halfRange;
-    let endPage = currentPage + halfRange;
-
-    if (startPage < 1) {
-      startPage = 1;
-      endPage = visiblePageRange;
-    }
-
-    if (endPage > totalPages) {
-      endPage = totalPages;
-      startPage = totalPages - visiblePageRange + 1;
-      if (startPage < 1) {
-        startPage = 1;
-      }
-    }
-
-    return Array.from(
-      { length: endPage - startPage + 1 },
-      (_, i) => startPage + i
-    );
-  };
-
-  const paginationRange = getPaginationRange();
-
   return (
     <div className="App">
       <h1>Headless Blog</h1>
@@ -72,16 +46,17 @@ const BlogList = () => {
       ))}
 
       <div className="pagination">
-        {paginationRange.map((page) => (
-          <button
-            className="paginationButton"
-            key={page}
-            onClick={() => handlePageChange(page)}
-            disabled={page === currentPage}
-          >
-            {page}
-          </button>
-        ))}
+        {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+          (page) => (
+            <button
+              key={page}
+              onClick={() => handlePageChange(page)}
+              disabled={page === currentPage}
+            >
+              {page}
+            </button>
+          )
+        )}
       </div>
       <footer>
         Created by{" "}
