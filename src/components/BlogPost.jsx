@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 const BlogPost = () => {
   const [post, setPost] = useState(null);
@@ -20,10 +20,24 @@ const BlogPost = () => {
   return (
     <div className="App">
       <div className="App-header">
-        <h1>{post.title.rendered}</h1>
-
-        <p dangerouslySetInnerHTML={{ __html: post.content.rendered }}></p>
+        <Link className="App-link" to={`/`}>
+          Previous Page
+        </Link>
+        <h1
+          className="app-title-blog"
+          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
+        ></h1>
       </div>
+      <div className="App-content">
+        <div dangerouslySetInnerHTML={{ __html: post.content.rendered }}></div>
+      </div>
+      <footer>
+        Created by{" "}
+        <a href="https://kayacuneyt.com" target="_blank" rel="noreferrer">
+          Cüneyt Kaya
+        </a>{" "}
+        - 2023
+      </footer>
     </div>
   );
 };

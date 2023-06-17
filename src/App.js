@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import BlogList from "./components/BlogList";
 import BlogPost from "./components/BlogPost";
+import BlogContact from "./components/BlogContact";
 
 const App = () => {
   return (
@@ -10,9 +11,15 @@ const App = () => {
       <Routes>
         <Route exact path="/" component={BlogList} element={<BlogList />} />
         <Route
-          path="/post/:postId"
+          path="/makaleler/:postId"
           component={BlogPost}
           element={<BlogPost />}
+        />
+        <Route
+          exact
+          path="/contact"
+          component={BlogContact}
+          element={<BlogContact />}
         />
       </Routes>
     </BrowserRouter>
