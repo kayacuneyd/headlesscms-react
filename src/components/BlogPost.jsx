@@ -17,7 +17,7 @@ const BlogPost = () => {
     return <div>Loading...</div>;
   }
 
-  //const mediaBaseUrl = "https://buyutechaber.com/?attachment_id="
+  const mediaBaseUrl = "https://buyutechaber.com/?attachment_id="
 
   return (
     <div className="App">
@@ -32,7 +32,7 @@ const BlogPost = () => {
       </div>
       <div className="post-image">
             {post.featured_media && (
-              <img src={post.guid.rendered} alt={post.title.rendered} />
+              <img src={mediaBaseUrl + post.featured_media} alt={post.title.rendered} />
             )}
           </div>
       <div className="App-content">

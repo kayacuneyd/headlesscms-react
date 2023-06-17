@@ -53,7 +53,7 @@ const BlogList = () => {
   };
 
   const paginationRange = getPaginationRange();
-  //const mediaBaseUrl = "https://buyutechaber.com/?attachment_id="
+  const mediaBaseUrl = "https://buyutechaber.com/?attachment_id="
 
   return (
     <div className="App">
@@ -66,7 +66,7 @@ const BlogList = () => {
           </Link>
           <div className="post-image">
             {post.featured_media && (
-              <img src={post.guid.rendered} alt={post.title.rendered} />
+              <img src={mediaBaseUrl + post.featured_media} alt={post.title.rendered} />
             )}
           </div>
           <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}></p>
