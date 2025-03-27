@@ -8,7 +8,7 @@ const BlogContact = () => {
 
   useEffect(() => {
     axios
-      .get(`https://buyutechaber.com/wp-json/wp/v2/posts/${postId}`)
+      .get(`https://baltikpostasi.com/wp-json/wp/v2/posts/${postId}`)
       .then((response) => setPost(response.data))
       .catch((error) => console.error(error));
   }, [postId]);
