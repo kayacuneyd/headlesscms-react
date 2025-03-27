@@ -16,7 +16,7 @@ const BlogList = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          `https://baltikpostasi.com/wp-json/wp/v2/posts?page=${currentPage}&per_page=${postsPerPage}`
+          `https://baltikpostasi.com/wp-json/wp/v2/posts?_embed&page=${currentPage}&per_page=${postsPerPage}`
         );
         setPosts(response.data);
         setTotalPages(response.headers["x-wp-totalpages"]);
@@ -65,8 +65,14 @@ const BlogList = () => {
             <h2 dangerouslySetInnerHTML={{ __html: post.title.rendered }}></h2>
           </Link>
           <div className="post-image">
-            {post.featured_media && (
-              <img src={mediaBaseUrl + post.featured_media} alt={post.title.rendered} />
+            {post._embedded &&
+             post._embedded['wp:featuredmedia'] &&
+             post._embedded['wp:featuredmedia'][0] &&
+             post._embedded['wp:featuredmedia'][0].source_url && (
+                <img
+                  src={post._embedded['wp:featuredmedia'][0].source_url}
+                  alt={post.title.rendered}
+                />
             )}
           </div>
           <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}></p>
