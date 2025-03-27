@@ -8,7 +8,7 @@ const BlogPost = () => {
 
   useEffect(() => {
     axios
-      .get(`https://baltikpostasi.com/wp-json/wp/v2/posts/${postId}`)
+      .get(`https://baltikpostasi.com/wp-json/wp/v2/posts/${postId}?_embed`)
       .then((response) => setPost(response.data))
       .catch((error) => console.error(error));
   }, [postId]);
@@ -31,8 +31,14 @@ const BlogPost = () => {
         ></h1>
       </div>
       <div className="post-image">
-            {post.featured_media && (
-              <img src={mediaBaseUrl + post.featured_media} alt={post.title.rendered} />
+            {post._embedded &&
+             post._embedded['wp:featuredmedia'] &&
+             post._embedded['wp:featuredmedia'][0] &&
+             post._embedded['wp:featuredmedia'][0].source_url && (
+                <img
+                  src={post._embedded['wp:featuredmedia'][0].source_url}
+                  alt={post.title.rendered}
+                />
             )}
           </div>
       <div className="App-content">
