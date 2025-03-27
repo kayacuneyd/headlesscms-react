@@ -8,7 +8,7 @@ const BlogPost = () => {
 
   useEffect(() => {
     axios
-      .get(`https://buyutechaber.com/wp-json/wp/v2/posts/${postId}`)
+      .get(`https://baltikpostasi.com/wp-json/wp/v2/posts/${postId}`)
       .then((response) => setPost(response.data))
       .catch((error) => console.error(error));
   }, [postId]);
@@ -17,7 +17,7 @@ const BlogPost = () => {
     return <div>Loading...</div>;
   }
 
-  const mediaBaseUrl = "https://buyutechaber.com/?attachment_id="
+  const mediaBaseUrl = "https://baltikpostasi.com/?attachment_id="
 
   return (
     <div className="App">
