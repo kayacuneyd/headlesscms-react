@@ -53,7 +53,7 @@ const BlogList = () => {
   };
 
   const paginationRange = getPaginationRange();
-  const mediaBaseUrl = "https://baltikpostasi.com/?attachment_id="
+  //const mediaBaseUrl = "https://baltikpostasi.com/?attachment_id="
 
   return (
     <div className="App">
