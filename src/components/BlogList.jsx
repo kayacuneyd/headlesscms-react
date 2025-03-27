@@ -72,6 +72,7 @@ const BlogList = () => {
                 <img
                   src={post._embedded['wp:featuredmedia'][0].source_url}
                   alt={post.title.rendered}
+                  style={{ width: "50%", height: "auto" }}
                 />
             )}
           </div>
