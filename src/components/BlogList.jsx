@@ -16,7 +16,7 @@ const BlogList = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          `https://buyutechaber.com/wp-json/wp/v2/posts?page=${currentPage}&per_page=${postsPerPage}`
+          `https://baltikpostasi.com/wp-json/wp/v2/posts?page=${currentPage}&per_page=${postsPerPage}`
         );
         setPosts(response.data);
         setTotalPages(response.headers["x-wp-totalpages"]);
