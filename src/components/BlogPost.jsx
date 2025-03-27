@@ -17,7 +17,7 @@ const BlogPost = () => {
     return <div>Loading...</div>;
   }
 
-  const mediaBaseUrl = "https://baltikpostasi.com/?attachment_id="
+  //const mediaBaseUrl = "https://baltikpostasi.com/?attachment_id="
 
   return (
     <div className="App">
